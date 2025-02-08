@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Propose Day, Minnie!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .propose-button, .yes-button, .no-button {
+            background-color: #ff6f91;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 10px;
+        }
+        .propose-button:hover, .yes-button:hover, .no-button:hover {
+            background-color: #ff4b7d;
+            transform: scale(1.1);
+        }
+        .no-button {
+            position: relative;
+        }
+        .no-button:hover {
+            transform: translateX(100px);
+            transition: transform 0.3s ease;
+        }
+        .message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        .heart {
+            position: absolute;
+            color: #ff4b7d;
+            font-size: 2em;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+        .kissing-emoji {
+            font-size: 2em;
+            margin: 10px;
+            animation: kiss-float 3s infinite ease-in-out;
+        }
+        @keyframes kiss-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Propose Day, Minnie! 😘😘</h1>
+        <button class="propose-button" onclick="showOptions()">Will You Be My Valentine?</button>
+        <div id="options" style="display: none;">
+            <button class="yes-button" onclick="showMessage('yes')">Yes 😘</button>
+            <button class="no-button" onmouseover="moveButton(this)">No</button>
+        </div>
+        <div class="message" id="message"></div>
+        <div class="kissing-emoji">😘 😘 😘 😘 😘</div>
+    </div>
+
+    <script>
+        function showOptions() {
+            document.getElementById('options').style.display = 'block';
+        }
+
+        function showMessage(answer) {
+            const messageElement = document.getElementById('message');
+            if (answer === 'yes') {
+                messageElement.textContent = '❤️ Yes, noice hai phir toh😁😁 ❤️ 😘';
+                messageElement.style.display = 'block';
+            }
+        }
+
+        function moveButton(button) {
+            const randomX = Math.floor(Math.random() * 200) - 100;
+            const randomY = Math.floor(Math.random() * 200) - 100;
+            button.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        function createHearts() {
+            const heartContainer = document.body;
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = '❤️';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${3 + Math.random() * 5}s`;
+                heart.style.fontSize = `${1 + Math.random() * 2}em`;
+                heartContainer.appendChild(heart);
+            }
+        }
+
+        window.onload = createHearts;
+    </script>
+</body>
+</html>
